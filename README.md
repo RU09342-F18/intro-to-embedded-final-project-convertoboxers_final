@@ -13,5 +13,5 @@ Here are some of the required components used in this project:
 3. ESP8266: WiFi Module
 4. Parallax 28015-ND: Ultrasonic Sensor
 
-# Functionality of the Project
+# Functionality of the Code
 
