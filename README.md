@@ -4,7 +4,7 @@ detect the amount of people in an area when they trigger the sensors. The MSP430
 and uses MQTT protocol to deliever the information onto a MQTT broker or cloud server. By establishng a connection through the 
 MQTT broker, anyone will be able to subscribe to the topic and be able to see the real time data of the counter.     
 
-
+intro-to-embedded-final-project-convertoboxers_final/ImageOfSystem.JPG
 
 # Authurs: Jan Garcia and Anwar Hussein 
 
