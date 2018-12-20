@@ -5,3 +5,5 @@ and uses MQTT protocol to deliever the information onto a MQTT broker or cloud s
 MQTT broker, anyone will be able to subscribe to the topic and be able to see the real time data of the counter.     
 # Authurs: Jan Garcia and Anwar Hussein 
 
+# Components
+Here are some of the required components used in this project:
