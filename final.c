@@ -207,29 +207,24 @@ __interrupt void ADC12_ISR(void)
                                     * The relationship between voltage output of the IR sensor and the Distance of an
                                     * objects is not linear thereofore we have used the distance vs inverse voltage value
                                     * to comeup with this equation. */
-     /*if (CM <= 140)
-             {
-                 // Turn on LED
-                 P4OUT &= BIT7;
-             }
-             else
-             {
-                 // Turn off LED
-                 P4OUT &= ~BIT7;
-             }
-
+ 
+// The following 
      if (CM <= 140)
-         { if (distance <= DISTANCE_THRESHOLD)
+         { 
+             if (distance <= DISTANCE_THRESHOLD)
              {
-                 counter --;
+                 counter ++;
 
              }
          }
-     else*/
-     if (distance < DISTANCE_THRESHOLD){
-             {
-                 counter ++;
-             }
+     else  if (distance < DISTANCE_THRESHOLD)
+     {
+             if (CM <= 140)
+                {
+                     
+                 counter --;
+                }
+             
      }
 
 
