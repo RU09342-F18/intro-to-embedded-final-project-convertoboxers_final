@@ -17,6 +17,7 @@
                     * Universal Asynchronous Recieve Transmit (UART)
                     * IR sensor Distance measurement              
                     * Sonic sensor Distance measurement
+         */
 
 
 // Libraries used for the different functions
@@ -213,20 +214,23 @@ __interrupt void ADC12_ISR(void)
 /* The following conditions determine when to count up and when count down depending on whether a person 
  * gets in a room or leaves a room.
  */
-     if (CM <= 140)
+         
+      // The following conditional statement can be read as follows 
+         
+     if (CM <= 140)                                  // If the IR sensor detects objects first ...
          { 
-             if (distance <= DISTANCE_THRESHOLD)
+             if (distance <= DISTANCE_THRESHOLD)     // then that object also passes the sonic sensor
              {
-                 counter ++;
+                 counter ++;                        // that person is walking in so, add one to the count
 
              }
          }
-     else  if (distance < DISTANCE_THRESHOLD)
-     {
-             if (CM <= 140)
+     else  if (distance < DISTANCE_THRESHOLD)   // If the Ultra sonic sensor detects objects first ...
+     { 
+             if (CM <= 140)                     // then that object also passes the IR sensor
                 {
                      
-                 counter --;
+                 counter --;                    // that person is walking out so, remove one from the count
                 }
              
      }
