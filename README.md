@@ -35,3 +35,39 @@ setADC();
 sonic();
 ```
 The setUart() function is self explanatory based on its name. The UART transmission on RealTerm converts the data send to Asicc characters. The setADC() utilizes the 12-bit ADC and uses an interrupt vector to calculate the maximum threshold signal for the distance it reads of the IR sensor and increments the counter everytime it triggers. The sonic() function is configured to do the same thing as the IR sensor, it calculates the distance and increment the counter when it reaches the maximum threshold of the signal. However, it utilizes the timerA0 peripheral to set a specific time at which the clock will capture and set for each echco sound the ultrasonic sensor recieves and calculates the distance using the MSP430. To decrement the counter, the sensors will have to be trigger from sensor B (ultrasonic sensor ) to sensor A (IR sensor) at that order. 
+
+A snippet of code for the setADC() function that contains the equation to calculate the distance for the IR sensor and the counter can be seen below:
+```
+#pragma vector = ADC12_VECTOR
+__interrupt void ADC12_ISR(void)
+{
+ switch(ADC12IV)
+ {
+ case  6: // Vector  6:  ADC12IFG0
+ {
+     adc = ADC12MEM0;              // The ADC read is stored in the variable
+     CM = 10*(4800/(adc-20));      /*This is the equation that we used to calculate the relative distance
+                                    * of an object from the IR sesor from the corresponding voltage output change.
+                                    * The relationship between voltage output of the IR sensor and the Distance of an
+                                    * objects is not linear thereofore we have used the distance vs inverse voltage value
+                                    * to comeup with this equation. */
+ 
+// The following 
+     if (CM <= 140)
+         { 
+             if (distance <= DISTANCE_THRESHOLD)
+             {
+                 counter ++;
+
+             }
+         }
+     else  if (distance < DISTANCE_THRESHOLD)
+     {
+             if (CM <= 140)
+                {
+                     
+                 counter --;
+                }
+```
+
+
