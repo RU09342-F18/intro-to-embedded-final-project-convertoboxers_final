@@ -6,7 +6,7 @@ MQTT broker, anyone will be able to subscribe to the topic and be able to see th
 
 ![alt text](https://github.com/RU09342-F18/intro-to-embedded-final-project-convertoboxers_final/blob/master/ImageOfSystem.JPG)
 
-# Authurs: Jan Garcia and Anwar Hussein 
+# Authors: Jan Garcia and Anwar Hussein 
 
 # Components
 Here are some of the required components used in this project:
