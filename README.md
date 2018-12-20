@@ -70,4 +70,30 @@ __interrupt void ADC12_ISR(void)
                 }
 ```
 
-
+Also, here is another snippet of the code from the "for" loop algorithm used to calculate the distance for the ultrasonic sensor:
+```
+for (;;)
+    {
+        triggerMeasurement();
+        // Wait for echo start
+        __low_power_mode_3();
+        lastCount = TA0CCR2;
+        // Wait for echo end
+        __low_power_mode_3();
+        distance = TA0CCR2 - lastCount;
+        distance *= 34000;
+        distance >>= 14;  // division by 16384 (2 ^ 14)
+       if (distance <= DISTANCE_THRESHOLD)
+        {
+            // Turn on LED
+            P1OUT |= LED_PIN;
+        }
+        else
+        {
+            // Turn off LED
+            P1OUT &= ~LED_PIN;
+        }
+        // Wait for the next measure interval tick
+        __low_power_mode_3();
+    }
+```
