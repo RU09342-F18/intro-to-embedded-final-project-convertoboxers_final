@@ -34,4 +34,4 @@ setUart();
 setADC();
 sonic();
 ```
-The setUart() and setADC() functions are obvious on what they do. The sonic() function is configured to calculated the distance and increment the counter when it reaches the maximum threshold of the signal. It utilizes the timerA0 peripheral to set a specific time at which the clock will capture and set for each echco sound the ultrasonic sensor recieves and calculates the distance using the MSP430. 
+The setUart() function is self explanatory based on its name. The setADC(), however utilizes the 12-bit ADC and uses an interrupt vector to calculate the maximum threshold signal for the distance it reads. The sonic() function is configured to calculated the distance and increment the counter when it reaches the maximum threshold of the signal. It utilizes the timerA0 peripheral to set a specific time at which the clock will capture and set for each echco sound the ultrasonic sensor recieves and calculates the distance using the MSP430. 
