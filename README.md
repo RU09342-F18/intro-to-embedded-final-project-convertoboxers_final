@@ -27,11 +27,11 @@ Important libraries required to run the code:
 ```
 
 ## Functionality of the Code
-The MSP430F5529 utilizes the 12-bit ADC for cacluating the distance of the sensors and UART, as an optionally supoort to see the data on Realterm.
-The main.c contains 3 functions:
+The MSP430F5529 utilizes the 12-bit ADC for cacluating the distance of the sensors and UART, as an optional support to see the data on Realterm.
+The main.c contains 3 functions and several sensor parameters:
 ```
 setUart();
 setADC();
 sonic();
 ```
-The setUart() function is self explanatory based on its name. The setADC(), however utilizes the 12-bit ADC and uses an interrupt vector to calculate the maximum threshold signal for the distance it reads. The sonic() function is configured to calculated the distance and increment the counter when it reaches the maximum threshold of the signal. It utilizes the timerA0 peripheral to set a specific time at which the clock will capture and set for each echco sound the ultrasonic sensor recieves and calculates the distance using the MSP430. 
+The setUart() function is self explanatory based on its name. The UART transmission on RealTerm converts the data send to Asicc characters. The setADC() utilizes the 12-bit ADC and uses an interrupt vector to calculate the maximum threshold signal for the distance it reads of the IR sensor and increments the counter everytime it triggers. The sonic() function is configured to do the same thing as the IR sensor, it calculates the distance and increment the counter when it reaches the maximum threshold of the signal. However, it utilizes the timerA0 peripheral to set a specific time at which the clock will capture and set for each echco sound the ultrasonic sensor recieves and calculates the distance using the MSP430. 
