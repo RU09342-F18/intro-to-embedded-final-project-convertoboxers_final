@@ -12,6 +12,11 @@ Here are some of the required components used in this project:
 2. GP2Y0A21YK0F: Sharp IR Sensor
 3. ESP8266: WiFi Module
 4. Parallax 28015-ND: Ultrasonic Sensor
+5. Code Composer Studio Latest Version
 
-# Functionality of the Code
+# Getting Started
+## Prerequisites
+Important libraries required to run the code: 
+
+## Functionality of the Code
 
