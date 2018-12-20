@@ -202,13 +202,17 @@ __interrupt void ADC12_ISR(void)
  case  6: // Vector  6:  ADC12IFG0
  {
      adc = ADC12MEM0;              // The ADC read is stored in the variable
+     
      CM = 10*(4800/(adc-20));      /*This is the equation that we used to calculate the relative distance
                                     * of an object from the IR sesor from the corresponding voltage output change.
                                     * The relationship between voltage output of the IR sensor and the Distance of an
                                     * objects is not linear thereofore we have used the distance vs inverse voltage value
-                                    * to comeup with this equation. */
+                                    * to comeup with this equation. 
+                                    */
  
-// The following 
+/* The following conditions determine when to count up and when count down depending on whether a person 
+ * gets in a room or leaves a room.
+ */
      if (CM <= 140)
          { 
              if (distance <= DISTANCE_THRESHOLD)
