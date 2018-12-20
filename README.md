@@ -7,3 +7,7 @@ MQTT broker, anyone will be able to subscribe to the topic and be able to see th
 
 # Components
 Here are some of the required components used in this project:
+
+1. MSP430F5529 Microcontroller form Texas Instruments(TI)
+2. GP2Y0A21YK0F: Sharp IR Sensor
+3. ESP8266: WiFi Module
