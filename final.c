@@ -1,3 +1,15 @@
+/*File: main.c for MSP430FR2311 Button Interrupt
+ * Authors: Anwar Hussein
+ *        : Jan Garcia 
+ * Created on: 11/27/2018
+ * Last Edited: 12/19/2018
+ */
+
+/**************************************Smart Crowd Detection System (SCDS) **************************************/
+
+/* Smart crowdd detection system si 
+
+
 #include <msp430.h>
 #include <intrinsics.h>
 #include <stdint.h>
