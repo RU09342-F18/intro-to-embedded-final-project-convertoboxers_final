@@ -7,30 +7,40 @@
 
 /**************************************Smart Crowd Detection System (SCDS) **************************************/
 
-/* Smart crowdd detection system si 
+        /* Smart crowd detection system is a sysem that detects the amount of people
+        *that are present in a given space automatically and sends the cound data to
+        * a server through wifi by using an MQTT protocol. Two sensors were used in the 
+        * implementation of the system, IR sensor and ultrasonic sensor. In the following
+        * code we have implementd functions for the following main algorithms
+        
+                    * Aalog to Digital Converter (ADC)
+                    * Universal Asynchronous Recieve Transmit (UART)
+                    * IR sensor Distance measurement              
+                    * Sonic sensor Distance measurement
 
 
+// Libraries used for the different functions
 #include <msp430.h>
 #include <intrinsics.h>
 #include <stdint.h>
 
-// Sonic sensor define parameters
+// Parameter definition for the implementation of the ultrasonic sensor measurement
 
-#define TRIGGER_PIN BIT1   // P6.1
-#define ECHO_PIN BIT3  // P1.3
-#define LED_PIN BIT0   // P1.0
-#define DISTANCE_THRESHOLD 60  // cm
-#define MEASURE_INTERVAL 2048  // ~250 ms
+#define TRIGGER_PIN BIT1       // Trigger pin of the Sonic sensor is connected to the P6.1 
+#define ECHO_PIN BIT3          // Echo pin of the Sonic sensor is connected to the P1.3
+#define LED_PIN BIT0           // LED that indicated the status of the Sonic sensor is connected to P1.0
+#define DISTANCE_THRESHOLD 60  // The sensor detects any object closer that 0.6 meters
+#define MEASURE_INTERVAL 2048  // Measurement is take  every 250 ms
 
-// IR sensor parameters
-int CM = 0;
-int adc = 0;
-int counter = 0;
+// IR sensor variables and parameters
+int CM = 0;             // The distance of any object measured relative to the IR sensor
+int adc = 0;            // The voltage output form the sensor read from the 
+int counter = 0;        // This variable stores the number of people counter present in a space.
 int i = 0;
 
 
 
-// Data Transmission
+// An array for Data Transmission through UART
 volatile unsigned char byte = 0;
 volatile unsigned char data[8];
 
@@ -39,6 +49,8 @@ volatile unsigned char data[8];
 uint16_t lastCount = 0;
 uint32_t distance = 0;
 
+// This function is used to send a pulse out through the trigger pin
+// so that sound wave can be emmiter through the transmitter.
 void triggerMeasurement() {
     // Start trigger
     P6OUT |= TRIGGER_PIN;
