@@ -16,7 +16,12 @@ Here are some of the required components used in this project:
 
 # Getting Started
 ## Prerequisites
-Important libraries required to run the code: 
+Important libraries required to run the code:
+```
+#include <msp430.h>
+#include <intrinsics.h>
+#include <stdint.h>
+```
 
 ## Functionality of the Code
 
