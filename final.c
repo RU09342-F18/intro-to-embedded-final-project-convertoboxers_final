@@ -46,11 +46,12 @@ volatile unsigned char data[8];
 
 
 //Sonic sensor functions
-uint16_t lastCount = 0;
+uint16_t lastCount = 0; 
 uint32_t distance = 0;
 
 // This function is used to send a pulse out through the trigger pin
 // so that sound wave can be emmiter through the transmitter.
+
 void triggerMeasurement() {
     // Start trigger
     P6OUT |= TRIGGER_PIN;
@@ -87,7 +88,9 @@ void sonic(){
     TA0CTL = TASSEL__ACLK | ID__4 | MC__CONTINUOUS | TACLR;
 
 
+// This for loop is used to calculate the measured distance by usind the distance equation 
 
+                        // Disntace = Speed of sound * Time 
     for (;;)
     {
         triggerMeasurement();
@@ -123,7 +126,7 @@ void sonic(){
 
 
 
-// Serial communication protocol
+// Serial communication protocol setup
 
 void setUart()
 {
@@ -139,6 +142,8 @@ void setUart()
 
 }
 
+
+// Analog to digital Converter (ADC) setup
 
 void setADC()
 {
@@ -158,13 +163,15 @@ void setADC()
          ADC12IFG &= ~ADC12IFG0;                     // Clear flag
 }
 
+// Main funcition
 
 int main(void)
 {
     P4DIR |= BIT7;     // P1.0 output
 
     WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
-   setUart();
+    //including the function that are set to the main function
+   setUart();   
    setADC();
    sonic();
 
@@ -194,8 +201,12 @@ __interrupt void ADC12_ISR(void)
  {
  case  6: // Vector  6:  ADC12IFG0
  {
-     adc = ADC12MEM0;
-     CM = 10*(4800/(adc-20));
+     adc = ADC12MEM0;              // The ADC read is stored in the variable
+     CM = 10*(4800/(adc-20));      /*This is the equation that we used to calculate the relative distance
+                                    * of an object from the IR sesor from the corresponding voltage output change.
+                                    * The relationship between voltage output of the IR sensor and the Distance of an
+                                    * objects is not linear thereofore we have used the distance vs inverse voltage value
+                                    * to comeup with this equation. */
      /*if (CM <= 140)
              {
                  // Turn on LED
